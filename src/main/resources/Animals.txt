@@ -1,0 +1,26 @@
+Anteater
+Bee
+Crocodile
+Dog
+Elephant
+Friendly Crocodile
+Goat
+Horse
+Iguana
+Jumping Kangaroo
+Kangaroo
+Lemur
+MISS
+Nut
+Octopus
+Penguin
+Quacking Duck
+Rabbit
+Snake
+Tiger
+Unfriendly Crocodile
+Very Big Elephant
+Wiggly Worm
+Xylophone
+Yax
+ZTART
