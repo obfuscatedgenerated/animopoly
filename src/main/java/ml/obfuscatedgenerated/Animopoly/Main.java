@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        Board.init();
         System.out.println(Board.areDoubles(Board.dice()));
         Deck deck = new Deck();
 

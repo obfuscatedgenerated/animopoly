@@ -1,20 +1,62 @@
 [
   {
     "title" :  "Big win!",
-    "message" : "You won the lottery! You gain £400.",
+    "message" : "You won the lottery! You gain §400.",
     "type" : "W",
-    "value" :  400
+    "value" :  200
   },
   {
-    "title" :  "Robbed.",
-    "message" : "Another player has stolen £400 from you.",
+    "title" : "The farm is not a safe place.",
+    "message" : "You've been robbed at gunpoint. Your family feels unsafe and wishes to move away from the farm. You lose §200!",
+    "type" : "W",
+    "value" : -200
+  },
+  {
+    "title" :  "Switcheroo!",
+    "message" : "You've switched money with another player!",
     "type" :  "W",
-    "value" :  400
+    "value" :  0
   },
   {
     "title" : "Transcendentalism.",
-    "message" : "Through some kind of divine intervention, you are moved 3 tiles forward... Does this mean there is a god?",
+    "message" : "Through some kind of divine intervention, you are moved 2 tiles forward... Does this mean there is a god?",
     "type" : "M",
-    "value" : 3
+    "value" : 2
+  },
+  {
+    "title" : "The wayward spirits.",
+    "message" : "Your actions have not been looked upon so kindly by the ancient gods. You move back 2 tiles.",
+    "type" : "M",
+    "vale" : -2
+  },
+  {
+    "title" : "The stock market has collapsed.",
+    "message" : "The stock market has collapsed, but you shorted the market! You gain §1000, and the knowledge that you earned money off of the suffering of others.",
+    "type" : "W",
+    "value" : 1000
+  },
+  {
+    "title" : "Tragedy",
+    "message" : "It's horrific! Ollie hacks your GitHub account. You lose §1000.",
+    "type" : "W",
+    "value" : -1000
+  },
+  {
+    "title" : "Free ride!",
+    "message" : "You got in a car with a stranger and weren't kidnapped! You move to start.",
+    "type" : "S",
+    "value" : 0
+  },
+  {
+    "title" : "Tim - The Almighty",
+    "message" : "The entity colloquially known as Tim has bestowed upon you victory.",
+    "type" : "V",
+    "value" : 0
+  },
+  {
+    "title" : "You have angered Tim",
+    "message" : "Tim is angry. You lose.",
+    "type" : "L",
+    "value" : 0
   }
 ]
