@@ -1,0 +1,20 @@
+[
+  {
+    "title" :  "Big win!",
+    "message" : "You won the lottery! You gain £400.",
+    "type" : "W",
+    "value" :  400
+  },
+  {
+    "title" :  "Robbed.",
+    "message" : "Another player has stolen £400 from you.",
+    "type" :  "W",
+    "value" :  400
+  },
+  {
+    "title" : "Transcendentalism.",
+    "message" : "Through some kind of divine intervention, you are moved 3 tiles forward... Does this mean there is a god?",
+    "type" : "M",
+    "value" : 3
+  }
+]

@@ -1,18 +1,22 @@
 package ml.obfuscatedgenerated.Animopoly;
 
 public class Card {
-    private String title = null;
-    private String message = null;
-    private int value = 0;
-
-    public Card(String title, String message, int value) {
+    String title;
+    String message;
+    char type;
+    int value;
+    public Card(String title, String message, char type, int value){
         this.title = title;
         this.message = message;
+        this.type = type;
         this.value = value;
     }
 
     @Override
-    public String toString() {
-        return this.title;
+    public String toString(){
+        String string = "";
+        string += "Title: " + title + "\n";
+        string += "Message: " + message + "\n";
+        return string;
     }
 }

@@ -1,48 +1,48 @@
 package ml.obfuscatedgenerated.Animopoly;
 
-import java.util.Queue;
-import java.util.LinkedList;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Arrays;
-
-//imports for file reading
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import com.google.gson.*;
+import com.google.gson.reflect.TypeToken;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.Reader;
+import java.util.*;
+
+
+//imports for JSON
 
 public class Deck {
-    private Queue<Card> deck = new LinkedList<>(); //create the deck
+    private Queue<Card> deck;//create the deck
 
-    public Deck(){
-        try{
-            String fileName = "card_details.txt";
-            BufferedReader in = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream("/" + fileName)));
-            String str;
+    public Deck() {
+        try {
+            // create a reader
+            ClassLoader classloader = Thread.currentThread().getContextClassLoader();
+            InputStream is = classloader.getResourceAsStream("card_details.json");
+            assert is != null;
+            Reader reader = new InputStreamReader(is);
 
-            List<String> list = new ArrayList<String>();
-            while((str = in.readLine()) != null){
-                list.add(str);
-            }
-            in.close();
+            // convert JSON array to list of cards
+            deck = new Gson().fromJson(reader, new TypeToken<LinkedList<Card>>() {}.getType());
 
-            for(int i = 0; i < list.size(); i++){
-                ArrayList<String> currentDetails = new ArrayList<>(Arrays.asList(list.get(i).split("/")));
-                String title = currentDetails.get(0);
-                String message = currentDetails.get(1);
-                int value = Integer.valueOf(currentDetails.get(2));
-                deck.add(new Card(title, message, value));
-            }
+            // close reader
+            reader.close();
 
-        }catch(IOException e){
-            System.out.println("ERROR: " + e.getLocalizedMessage());
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
+        shuffleDeck();
     }
 
     public Card draw(){
         Card card = deck.remove();
         deck.add(card); //add it to the back of the deck
         return card;
+    }
+    //is there are point in shuffling the deck instead of just having it as an arraylist that we can randomise?
+    //I guess it's more accurate to how actual m̵o̵n̵o̵p̵o̵l̵y̵ animopoly is played.
+    public void shuffleDeck(){
+        ArrayList<Card> cards = new ArrayList<Card>(deck);
+        Collections.shuffle(cards);
+        deck = new LinkedList<>(cards);
     }
 }
