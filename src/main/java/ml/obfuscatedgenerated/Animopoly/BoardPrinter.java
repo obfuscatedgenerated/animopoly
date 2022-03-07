@@ -49,7 +49,7 @@ public class BoardPrinter {
     public BoardPrinter() {
         // define empty for all board spaces
         for (int i : IntStream.range(0, 26).toArray()) {
-            valuesMap.put(allUppers[i]+"_token"," ");
+            valuesMap.put(allUppers[i] + "_token", " ");
         }
     }
 
@@ -62,13 +62,13 @@ public class BoardPrinter {
         if (!List.of(allUppers).contains(space)) {
             throw new IllegalArgumentException("invalid space char. must be a single uppercase letter char corresponding to the space.");
         }
-        valuesMap.replace(space+"_token",Character.toString(token));
+        valuesMap.replace(space + "_token", Character.toString(token));
     }
 
     public void unsetSpace(Character space) {
         if (!List.of(allUppers).contains(space)) {
             throw new IllegalArgumentException("invalid space char. must be a single uppercase letter char corresponding to the space.");
         }
-        valuesMap.replace(space+"_token"," ");
+        valuesMap.replace(space + "_token", " ");
     }
 }

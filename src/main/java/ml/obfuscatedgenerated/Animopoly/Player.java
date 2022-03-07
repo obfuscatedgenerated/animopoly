@@ -14,38 +14,47 @@ public class Player {
         this.money = money;
         this.token = token;
     }
+
     public String getName() {
         return name;
     }
 
-    public boolean owns(Tile tile){
+    public boolean owns(Tile tile) {
         return ownedTiles.contains(tile);
     }
-    public void addTile(Tile tile){
+
+    public void addTile(Tile tile) {
         ownedTiles.add(tile);
     }
-    public void removeTile(Tile tile){
+
+    public void removeTile(Tile tile) {
         ownedTiles.remove(tile);
     }
-    public void changeWallet(int value){
+
+    public void changeWallet(int value) {
         money += value;
     }
+
     public void setMoney(int value) {
         money = value;
     }
+
     public int getMoney() {
         return money;
     }
-    public void move(int move){
-        if(this.pos + move < 26){
+
+    public void move(int move) {
+        if (this.pos + move < 26) {
             pos += move;
-        }
-        else{
+        } else {
             pos = 1;
         }
     }
+
     @Override
     public String toString() {
-        return String.valueOf(token);
+        String message;
+        message = String.format("%s [%c]", name, token);
+        return message;
     }
 }

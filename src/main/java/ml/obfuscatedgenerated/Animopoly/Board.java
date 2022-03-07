@@ -17,11 +17,11 @@ public class Board {
         try (BufferedReader breader = new BufferedReader(reader)) {
             while (breader.ready()) {
                 String line = breader.readLine();
-                tiles.add(new Tile(0,0,line));
+                tiles.add(new Tile(0, 0, line));
             }
             breader.close();
             reader.close();
-        }catch (FileNotFoundException e) {
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
@@ -30,8 +30,8 @@ public class Board {
 
     public static ArrayList<Integer> dice() {
         ArrayList<Integer> al = new ArrayList<Integer>();
-        al.add(rng.nextInt(6)+1);
-        al.add(rng.nextInt(6)+1);
+        al.add(rng.nextInt(6) + 1);
+        al.add(rng.nextInt(6) + 1);
         return al;
     }
 

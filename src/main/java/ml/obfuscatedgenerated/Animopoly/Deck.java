@@ -2,6 +2,7 @@ package ml.obfuscatedgenerated.Animopoly;
 
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
+
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
@@ -22,7 +23,8 @@ public class Deck {
             Reader reader = new InputStreamReader(is);
 
             // convert JSON array to list of cards
-            deck = new Gson().fromJson(reader, new TypeToken<LinkedList<Card>>() {}.getType());
+            deck = new Gson().fromJson(reader, new TypeToken<LinkedList<Card>>() {
+            }.getType());
 
             // close reader
             reader.close();
@@ -33,14 +35,15 @@ public class Deck {
         shuffleDeck();
     }
 
-    public Card draw(){
+    public Card draw() {
         Card card = deck.remove();
         deck.add(card); //add it to the back of the deck
         return card;
     }
+
     //is there are point in shuffling the deck instead of just having it as an arraylist that we can randomise?
     //I guess it's more accurate to how actual m̵o̵n̵o̵p̵o̵l̵y̵ animopoly is played.
-    public void shuffleDeck(){
+    public void shuffleDeck() {
         ArrayList<Card> cards = new ArrayList<Card>(deck);
         Collections.shuffle(cards);
         deck = new LinkedList<>(cards);

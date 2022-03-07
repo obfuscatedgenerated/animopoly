@@ -3,11 +3,11 @@ package ml.obfuscatedgenerated.Animopoly;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.stream.IntStream;
+import java.util.Random;
 
 public class Main {
     private static final int starterMoney = 500;
     private static ArrayList<Player> players = new ArrayList<Player>();
-
     private static final Deck deck = new Deck();
 
     public static ArrayList<Player> getPlayers() {
@@ -24,11 +24,17 @@ public class Main {
             case 'W':
                 actor.changeWallet(card.getValue());
                 break;
+            case 'S':
+                Player switcher = players.get(new Random().nextInt(players.size() - 1));
+                int temp = actor.getMoney();
+                actor.setMoney(switcher.getMoney());
+                switcher.setMoney(temp);
+                System.out.println("You have switched with " + switcher);
             case 'V':
-                //PLACEHOLDER THAT JUST REMOVES EVERYONE'S MONEY
-                //ASSUMING ARRAY OF ALL PLAYERS EXISTS
                 for (Player player : players) {
-                    player.setMoney(0);
+                    if (player != actor) {
+                        player.setMoney(0);
+                    }
                 }
                 break;
             case 'L':
@@ -41,7 +47,7 @@ public class Main {
         Board.init();
 
         BoardPrinter bp = new BoardPrinter();
-
+        bp.setSpaceToken('A','@');
         System.out.println(bp.renderBoard());
 
         Scanner scanner = new Scanner(System.in);
