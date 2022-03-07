@@ -8,8 +8,33 @@ public class Main {
     private static final int starterMoney = 500;
     private static ArrayList<Player> players = new ArrayList<Player>();
 
+    private static final Deck deck = new Deck();
+
     public static ArrayList<Player> getPlayers() {
         return players;
+    }
+
+    public static void drawCard(Player actor) {
+        Card card = deck.draw();
+        System.out.println(card);
+        switch (card.getType()) {
+            case 'M':
+                actor.move(card.getValue());
+                break;
+            case 'W':
+                actor.changeWallet(card.getValue());
+                break;
+            case 'V':
+                //PLACEHOLDER THAT JUST REMOVES EVERYONE'S MONEY
+                //ASSUMING ARRAY OF ALL PLAYERS EXISTS
+                for (Player player : players) {
+                    player.setMoney(0);
+                }
+                break;
+            case 'L':
+                actor.setMoney(0);
+                break;
+        }
     }
 
     public static void main(String[] args) {

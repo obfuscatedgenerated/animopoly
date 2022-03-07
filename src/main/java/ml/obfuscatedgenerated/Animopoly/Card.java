@@ -12,6 +12,14 @@ public class Card {
         this.value = value;
     }
 
+    public int getValue(){
+        return value;
+    }
+
+    public char getType(){
+        return type;
+    }
+
     @Override
     public String toString(){
         String string = "";
