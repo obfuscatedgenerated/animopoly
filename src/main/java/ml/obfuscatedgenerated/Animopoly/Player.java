@@ -3,15 +3,21 @@ package ml.obfuscatedgenerated.Animopoly;
 import java.util.ArrayList;
 
 public class Player {
+    private String name;
     private int money;
     private int pos = 1;
     private char token;
     private ArrayList<Tile> ownedTiles = new ArrayList<Tile>();
 
-    public Player(int money, char token) {
+    public Player(String name, int money, char token) {
+        this.name = name;
         this.money = money;
         this.token = token;
     }
+    public String getName() {
+        return name;
+    }
+
     public boolean owns(Tile tile){
         return ownedTiles.contains(tile);
     }
