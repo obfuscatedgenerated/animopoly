@@ -40,6 +40,10 @@ public class Main {
     public static void main(String[] args) {
         Board.init();
 
+        BoardPrinter bp = new BoardPrinter();
+
+        System.out.println(bp.renderBoard());
+
         Scanner scanner = new Scanner(System.in);
 
         int playerCount = 0;
