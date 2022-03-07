@@ -45,7 +45,7 @@ public class BoardPrinter {
     // init literal map
     private Map<String, String> valuesMap = new HashMap<String, String>();
 
-    private List<Character> allUppers = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".chars().mapToObj((i) -> Character.valueOf((char)i)).collect(Collectors.toList());
+    private final List<Character> allUppers = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".chars().mapToObj((i) -> Character.valueOf((char)i)).collect(Collectors.toList());
 
     public BoardPrinter() {
         // define empty for all board spaces
