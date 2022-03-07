@@ -9,7 +9,7 @@ public class Main {
         Deck deck = new Deck();
 
         Scanner scanner = new Scanner(System.in);
-        System.out.println("(1) Draw card. \n(2) Shuffle deck \n(3) bruh");
+        System.out.println("(1) Draw card. \n(2) Shuffle deck");
         int choice = Integer.parseInt(scanner.nextLine());
         switch (choice){
             case 1:
@@ -18,10 +18,6 @@ public class Main {
                 System.out.println(card.value);
             case 2:
                 deck.shuffleDeck();
-            case 3:
-                Tile tile = new Tile(1,1,"bruh");
-                System.out.println(tile.getName());
-
         }
 
         scanner.close();
