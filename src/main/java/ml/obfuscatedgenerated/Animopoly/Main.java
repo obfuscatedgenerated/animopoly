@@ -40,6 +40,8 @@ public class Main {
             case 'L':
                 actor.setMoney(0);
                 break;
+            default:
+                throw new IllegalArgumentException(card.getType() + " is not a valid card type");
         }
     }
 
