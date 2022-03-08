@@ -6,7 +6,7 @@ import java.util.stream.IntStream;
 import java.util.Random;
 
 public class Main {
-    private static final int starterMoney = 500;
+    private static final int starterMoney = 1500;
     private static ArrayList<Player> players = new ArrayList<Player>();
     private static final Deck deck = new Deck();
 
