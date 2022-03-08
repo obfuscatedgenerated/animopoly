@@ -49,8 +49,6 @@ public class Main {
         Board.init();
 
         BoardPrinter bp = new BoardPrinter();
-        bp.setSpaceToken('A','@');
-        System.out.println(bp.renderBoard());
 
         Scanner scanner = new Scanner(System.in);
 
