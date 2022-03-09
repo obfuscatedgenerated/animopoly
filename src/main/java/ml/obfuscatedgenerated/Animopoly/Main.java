@@ -107,5 +107,29 @@ public class Main {
             players.add(new Player(holdName, starterMoney, holdToken)); // add the player to the arraylist
         }
         scanner.close();
+        int currPlayer = 0;
+        while (true) { // repeat until the game ends
+            System.out.println(bp.renderBoard());
+            System.out.println("Player "+(currPlayer+1)+" rolling...");
+            ArrayList<Integer> diceValue = Board.dice();
+            System.out.println(diceValue.get(0) + ", "+ diceValue.get(1));
+            int move = Board.sumDice(diceValue);
+            System.out.println("Total: "+move);
+            if (Board.areDoubles(diceValue)) {
+                System.out.println("DOUBLES! Drawing a card...");
+                drawCard(players.get(currPlayer));
+            }
+            // TODO: move player, do logic and set board value for it
+            // TODO: if win, break loop
+            if (0==1) { // replace this
+                break;
+            }
+            if (currPlayer == (playerCount-1)) {
+                currPlayer = 0;
+            } else {
+                currPlayer++;
+            }
+        }
+        System.out.println("Thanks for playing!");
     }
 }
