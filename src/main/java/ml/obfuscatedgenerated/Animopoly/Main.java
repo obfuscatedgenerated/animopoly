@@ -114,7 +114,7 @@ public class Main {
             System.out.println("Player " + (currPlayer + 1) + " (" + p.getName() + ") rolling...");
             ArrayList<Integer> diceValue = Board.dice();
             System.out.println(diceValue.get(0) + ", " + diceValue.get(1));
-            bp.unsetSpace("ABCDEFGHIJKLMNOPQRSTUVWXYZ".charAt(p.getPos()));
+            bp.unsetSpace("ZABCDEFGHIJKLMNOPQRSTUVWXY".charAt(p.getPos()));
             int move = Board.sumDice(diceValue);
             System.out.println("Total: " + move);
             if (Board.areDoubles(diceValue)) {
@@ -122,7 +122,7 @@ public class Main {
                 drawCard(p);
             }
             p.move(move);
-            bp.setSpaceToken("ABCDEFGHIJKLMNOPQRSTUVWXYZ".charAt(p.getPos()), p.getToken());
+            bp.setSpaceToken("ZABCDEFGHIJKLMNOPQRSTUVWXY".charAt(p.getPos()), p.getToken());
             // TODO: offer purchase, do logic and set board value for it
             // TODO: if win, break loop
             if (0 == 1) { // replace this
