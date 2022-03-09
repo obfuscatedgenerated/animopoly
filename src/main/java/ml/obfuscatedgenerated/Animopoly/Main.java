@@ -123,7 +123,7 @@ public class Main {
             }
             p.move(move);
             bp.setSpaceToken("ZABCDEFGHIJKLMNOPQRSTUVWXY".charAt(p.getPos()), p.getToken());
-            // TODO: offer purchase, do logic and set board value for it
+            // TODO: offer purchase, do logic
             // TODO: if win, break loop
             if (0 == 1) { // replace this
                 break;

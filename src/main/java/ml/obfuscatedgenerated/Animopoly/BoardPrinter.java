@@ -3,9 +3,7 @@ package ml.obfuscatedgenerated.Animopoly;
 import org.apache.commons.text.StringSubstitutor;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class BoardPrinter {
@@ -45,12 +43,12 @@ public class BoardPrinter {
     // init literal map
     private Map<String, String> valuesMap = new HashMap<String, String>();
 
-    private final List<Character> allUppers = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".chars().mapToObj((i) -> Character.valueOf((char)i)).collect(Collectors.toList());
+    private final String allUppers = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
     public BoardPrinter() {
         // define empty for all board spaces
         for (int i : IntStream.range(0, 26).toArray()) {
-            valuesMap.put(allUppers.get(i) + "_token", " ");
+            valuesMap.put(allUppers.charAt(i) + "_token", " ");
         }
     }
 
@@ -60,14 +58,14 @@ public class BoardPrinter {
     }
 
     public void setSpaceToken(Character space, Character token) {
-        if (!allUppers.contains(space)) {
+        if (!allUppers.contains(String.valueOf(space))) {
             throw new IllegalArgumentException("invalid space char. must be a single uppercase letter char corresponding to the space.");
         }
         valuesMap.replace(space + "_token", Character.toString(token));
     }
 
     public void unsetSpace(Character space) {
-        if (!allUppers.contains(space)) {
+        if (!allUppers.contains(String.valueOf(space))) {
             throw new IllegalArgumentException("invalid space char. must be a single uppercase letter char corresponding to the space.");
         }
         valuesMap.replace(space + "_token", " ");
