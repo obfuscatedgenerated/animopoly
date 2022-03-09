@@ -110,21 +110,25 @@ public class Main {
         int currPlayer = 0;
         while (true) { // repeat until the game ends
             System.out.println(bp.renderBoard());
-            System.out.println("Player "+(currPlayer+1)+" rolling...");
+            Player p = players.get(currPlayer);
+            System.out.println("Player " + (currPlayer + 1) + " (" + p.getName() + ") rolling...");
             ArrayList<Integer> diceValue = Board.dice();
-            System.out.println(diceValue.get(0) + ", "+ diceValue.get(1));
+            System.out.println(diceValue.get(0) + ", " + diceValue.get(1));
+            bp.unsetSpace("ABCDEFGHIJKLMNOPQRSTUVWXYZ".charAt(p.getPos()));
             int move = Board.sumDice(diceValue);
-            System.out.println("Total: "+move);
+            System.out.println("Total: " + move);
             if (Board.areDoubles(diceValue)) {
                 System.out.println("DOUBLES! Drawing a card...");
-                drawCard(players.get(currPlayer));
+                drawCard(p);
             }
-            // TODO: move player, do logic and set board value for it
+            p.move(move);
+            bp.setSpaceToken("ABCDEFGHIJKLMNOPQRSTUVWXYZ".charAt(p.getPos()), p.getToken());
+            // TODO: offer purchase, do logic and set board value for it
             // TODO: if win, break loop
-            if (0==1) { // replace this
+            if (0 == 1) { // replace this
                 break;
             }
-            if (currPlayer == (playerCount-1)) {
+            if (currPlayer == (playerCount - 1)) {
                 currPlayer = 0;
             } else {
                 currPlayer++;

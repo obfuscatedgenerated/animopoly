@@ -51,6 +51,14 @@ public class Player {
         }
     }
 
+    public int getPos() {
+        return pos;
+    }
+
+    public char getToken() {
+        return token;
+    }
+
     @Override
     public String toString() {
         String message;
