@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Player {
     private String name;
     private int money;
-    private int pos = 1;
+    private int pos = 0;
     private char token;
     private ArrayList<Tile> ownedTiles = new ArrayList<Tile>();
 
@@ -47,7 +47,7 @@ public class Player {
         if (this.pos + move < 26) {
             pos += move;
         } else {
-            pos = 1;
+            pos += (move - 26);
         }
     }
 
