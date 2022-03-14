@@ -16,7 +16,7 @@ public class Main {
         return players;
     }
 
-    public static void drawCard(Player actor) {
+    public static boolean drawCard(Player actor) {
         Card card = deck.draw();
         System.out.println(card);
         switch (card.getType()) {
@@ -27,24 +27,29 @@ public class Main {
                 actor.changeWallet(card.getValue());
                 break;
             case 'S':
-                Player switcher = players.get(new Random().nextInt(players.size() - 1));
+                Player switcher;
+                do {
+                    switcher = players.get(new Random().nextInt(players.size() - 1));
+                } while (switcher != actor);
                 int temp = actor.getMoney();
                 actor.setMoney(switcher.getMoney());
                 switcher.setMoney(temp);
                 System.out.println("You have switched with " + switcher);
+                break;
             case 'V':
                 for (Player player : players) {
                     if (player != actor) {
                         player.setMoney(0);
                     }
                 }
-                break;
+                return true;
             case 'L':
                 actor.setMoney(0);
                 break;
             default:
                 throw new IllegalArgumentException(card.getType() + " is not a valid card type");
         }
+        return false;
     }
 
     public static void main(String[] args) {
@@ -125,11 +130,31 @@ public class Main {
             System.out.println("Total: " + move);
             if (Board.areDoubles(diceValue)) {
                 System.out.println("DOUBLES! Drawing a card...");
-                drawCard(p);
+                if (drawCard(p)) { // check return gameend
+                    // count losing players, get non-losers
+                    int deadPlayers = 0;
+                    ArrayList<Player> notDead = new ArrayList<Player>();
+                    for (Player player : getPlayers()) {
+                        if (player.getMoney() <= 0) {
+                            deadPlayers++;
+                        } else {
+                            notDead.add(player);
+                        }
+                    }
+                    // if there are 1 less losing players than the player count, get the 1st and only non-loser
+                    if ((deadPlayers + 1) == playerCount) {
+                        Player winner = notDead.get(0);
+                        System.out.println(winner.getName() + " is the winner!");
+                        break;
+                    }
+                }
             }
             p.move(move);
             bp.setSpaceToken("ZABCDEFGHIJKLMNOPQRSTUVWXY".charAt(p.getPos()), p.getToken());
-            if (p.getPos() == 13) { p.setCanMove(false); };
+            if (p.getPos() == 13) {
+                p.setCanMove(false);
+            }
+            ;
             Tile currentTile = Board.getTile(p.getPos());
             System.out.println(currentTile);
             if (currentTile.isOwned() && currentTile.getOwner() != p) {
@@ -157,7 +182,7 @@ public class Main {
                 } else if (input == 'Y' && (p.getMoney() - currentTile.getPrice()) <= 0) {
                     System.out.println("You do not have enough money to upgrade this tile!");
                 }
-            } else {
+            } else if (p.getPos() != 0 && p.getPos() != 13) {
                 System.out.println("Would you like to purchase this tile? [Y/N]");
                 char input;
                 while (true) {

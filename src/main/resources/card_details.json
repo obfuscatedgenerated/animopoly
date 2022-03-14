@@ -1,13 +1,13 @@
 [
   {
     "title": "Big win!",
-    "message": "You won the lottery! You gain §400.",
+    "message": "You won the lottery! You gain \u00A7400.",
     "type": "W",
     "value": 200
   },
   {
     "title": "The farm is not a safe place.",
-    "message": "You've been robbed at gunpoint. Your family feels unsafe and wishes to move away from the farm. You lose §200!",
+    "message": "You've been robbed at gunpoint. Your family feels unsafe and wishes to move away from the farm. You lose \u00A7200!",
     "type": "W",
     "value": -200
   },
@@ -31,19 +31,19 @@
   },
   {
     "title": "The stock market has collapsed.",
-    "message": "The stock market has collapsed, but you shorted the market! You gain §1000, and the knowledge that you earned money off of the suffering of others.",
+    "message": "The stock market has collapsed, but you shorted the market! You gain \u00A71000, and the knowledge that you earned money off of the suffering of others.",
     "type": "W",
     "value": 1000
   },
   {
     "title": "Tragedy",
-    "message": "It's horrific! Ollie hacks your GitHub account. You lose §1000.",
+    "message": "It's horrific! Ollie hacks your GitHub account. You lose \u00A71000.",
     "type": "W",
     "value": -1000
   },
   {
     "title": "Bruh",
-    "message": "This is such a bruh, lose §1500.",
+    "message": "This is such a bruh, lose \u00A71500.",
     "type": "W",
     "value": -1500
   },

@@ -6,6 +6,7 @@ import com.google.gson.reflect.TypeToken;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 
@@ -20,7 +21,7 @@ public class Deck {
             ClassLoader classloader = Thread.currentThread().getContextClassLoader();
             InputStream is = classloader.getResourceAsStream("card_details.json");
             assert is != null;
-            Reader reader = new InputStreamReader(is);
+            Reader reader = new InputStreamReader(is, StandardCharsets.UTF_8);
 
             // convert JSON array to list of cards
             deck = new Gson().fromJson(reader, new TypeToken<LinkedList<Card>>() {
