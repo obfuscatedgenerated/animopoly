@@ -15,9 +15,12 @@ public class Board {
         assert is != null;
         Reader reader = new InputStreamReader(is);
         try (BufferedReader breader = new BufferedReader(reader)) {
+            int index = 1;
             while (breader.ready()) {
                 String line = breader.readLine();
-                tiles.add(new Tile(0, 0, line));
+                int price = (int) (100*Math.ceil(0.2*index));
+                tiles.add(new Tile(price, price / 2, line));
+                index++;
             }
             breader.close();
             reader.close();
