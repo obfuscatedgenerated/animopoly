@@ -124,10 +124,23 @@ public class Main {
             p.move(move);
             bp.setSpaceToken("ZABCDEFGHIJKLMNOPQRSTUVWXY".charAt(p.getPos()), p.getToken());
             // TODO: offer purchase, do logic
-            // TODO: if win, break loop
-            if (0 == 1) { // replace this
+            // count losing players, get non-losers
+            int deadPlayers = 0;
+            ArrayList<Player> notDead = new ArrayList<Player>();
+            for (Player player : getPlayers()) {
+                if (player.getMoney() <= 0) {
+                    deadPlayers++;
+                } else {
+                    notDead.add(player);
+                }
+            }
+            // if there are 1 less losing players than the player count, get the 1st and only non-loser
+            if ((deadPlayers+1) == playerCount) {
+                Player winner = notDead.get(0);
+                System.out.println(winner.getName() + " is the winner!");
                 break;
             }
+            // go to next player
             if (currPlayer == (playerCount - 1)) {
                 currPlayer = 0;
             } else {
