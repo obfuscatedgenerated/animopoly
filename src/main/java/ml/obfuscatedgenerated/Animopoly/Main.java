@@ -123,9 +123,9 @@ public class Main {
                 Thread.sleep(1000);
                 continue;
             }
-            System.out.println("Player " + (currPlayer + 1) + " (" + p.getName() + ") has §"+p.getMoney());
+            System.out.println("Player " + (currPlayer + 1) + " (" + p.getName() + ") has §" + p.getMoney());
             System.out.println("Player " + (currPlayer + 1) + " (" + p.getName() + ") rolling...");
-            for (int i : IntStream.range(0,100).toArray()) {
+            for (int i : IntStream.range(0, 100).toArray()) {
                 System.out.print("█");
                 Thread.sleep(10);
             }
@@ -143,11 +143,11 @@ public class Main {
                     ArrayList<Player> notDead = new ArrayList<Player>();
                     for (Player player : getPlayers()) {
                         if (player.getMoney() <= 0) {
-                            if(player.getOwnedTiles().isEmpty()) {
+                            if (player.getOwnedTiles().isEmpty()) {
                                 deadPlayers++;
                                 System.out.println("You are out of money. You can no longer make moves or buy animals.");
-                            }else{
-                                while(player.getMoney() <= 0) {
+                            } else {
+                                while (player.getMoney() <= 0) {
                                     System.out.println("You are out of money, you need to sell an animal: ");
                                     for (Tile tile : player.getOwnedTiles()) {
                                         System.out.println(tile.getName() + "\nAsking price: " + tile.getFee());
@@ -164,10 +164,10 @@ public class Main {
                                                 player.removeTile(tile);
                                             }
                                         }
-                                        if(!foundChoice){
+                                        if (!foundChoice) {
                                             System.out.println("Please input a valid animal that you own.");
                                         }
-                                    } while(!foundChoice);
+                                    } while (!foundChoice);
                                 }
                             }
                         } else {
@@ -242,11 +242,11 @@ public class Main {
             ArrayList<Player> notDead = new ArrayList<Player>();
             for (Player player : getPlayers()) {
                 if (player.getMoney() <= 0) {
-                    if(player.getOwnedTiles().isEmpty()) {
+                    if (player.getOwnedTiles().isEmpty()) {
                         deadPlayers++;
                         System.out.println("You are out of money. You can no longer make moves or buy animals.");
-                    }else{
-                        while(player.getMoney() <= 0) {
+                    } else {
+                        while (player.getMoney() <= 0) {
                             System.out.println("You are out of money, you need to sell an animal: ");
                             for (Tile tile : player.getOwnedTiles()) {
                                 System.out.println(tile.getName() + "\nAsking price: " + tile.getFee());
@@ -263,10 +263,10 @@ public class Main {
                                         player.removeTile(tile);
                                     }
                                 }
-                                if(!foundChoice){
+                                if (!foundChoice) {
                                     System.out.println("Please input a valid animal that you own.");
                                 }
-                            } while(!foundChoice);
+                            } while (!foundChoice);
                         }
                     }
                 } else {

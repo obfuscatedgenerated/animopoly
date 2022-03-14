@@ -49,10 +49,10 @@ public class Player {
             pos += move;
         } else {
             pos += (move - 26);
-            if(pos == 0){
+            if (pos == 0) {
                 System.out.println("You landed on Go! +§1000");
                 changeWallet(1000);
-            }else{
+            } else {
                 System.out.println("You passed Go! +§500");
                 changeWallet(500);
             }
@@ -82,7 +82,7 @@ public class Player {
         return message;
     }
 
-    public ArrayList<Tile> getOwnedTiles(){
+    public ArrayList<Tile> getOwnedTiles() {
         return ownedTiles;
     }
 }
