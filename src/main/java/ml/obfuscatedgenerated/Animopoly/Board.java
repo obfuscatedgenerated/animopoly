@@ -19,7 +19,7 @@ public class Board {
             while (breader.ready()) {
                 String line = breader.readLine();
                 int price = (int) (100 * Math.ceil(0.2 * index));
-                tiles.add(new Tile(price, price / 2, line));
+                tiles.add(new Tile(price, price / 10, line));
                 index++;
             }
             breader.close();

@@ -187,13 +187,13 @@ public class Main {
             if (p.getPos() == 13) {
                 p.setCanMove(false);
             }
-            ;
+
             Tile currentTile = Board.getTile(p.getPos());
             System.out.println(currentTile);
             if (currentTile.isOwned() && currentTile.getOwner() != p) {
                 p.changeWallet(-currentTile.getFee());
                 currentTile.getOwner().changeWallet(currentTile.getFee());
-                System.out.println("You owe " + currentTile.getOwner() + " " + currentTile.getPrice() + ".");
+                System.out.println("You owe " + currentTile.getOwner() + " " + currentTile.getFee() + ".");
             } else if (currentTile.getOwner() == p) {
                 System.out.println("Would you like to upgrade this tile? [Y/N]");
                 System.out.println("Cost: " + currentTile.getPrice());

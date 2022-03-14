@@ -11,7 +11,7 @@ public class BoardPrinter {
     private String boardTemplate = "+-----------------------------------------------------------------------------------------+\n" +
             "| Ztart   |Anteater |  Bee    |Crocodile|  Dog    |Elephant |Friendly |  Goat   |  Horse  |\n" +
             "|         |         |         |         |         |         |crocodile|         |         |\n" +
-            "|§200/§400|         |         |         |         |         |         |         |         |\n" +
+            "|§500/§1K |         |         |         |         |         |         |         |         |\n" +
             "|    ${Z_token}    |    ${A_token}    |    ${B_token}    |    ${C_token}    |    ${D_token}    |    ${E_token}    |    ${F_token}    |    ${G_token}    |    ${H_token}    |\n" +
             "|---------+---------------------------------------------------------------------+---------|\n" +
             "|  Yak    |                                                                     | Iguana  |\n" +
