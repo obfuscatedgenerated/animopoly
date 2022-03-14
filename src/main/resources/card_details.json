@@ -42,10 +42,10 @@
     "value": -1000
   },
   {
-    "title": "Free ride!",
-    "message": "You got in a car with a stranger and weren't kidnapped! You move to start.",
-    "type": "S",
-    "value": 0
+    "title": "Bruh",
+    "message": "This is such a bruh, lose §1500.",
+    "type": "W",
+    "value": -1500
   },
   {
     "title": "Tim - The Almighty",

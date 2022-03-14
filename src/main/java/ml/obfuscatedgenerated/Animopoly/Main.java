@@ -129,6 +129,7 @@ public class Main {
             }
             p.move(move);
             bp.setSpaceToken("ZABCDEFGHIJKLMNOPQRSTUVWXY".charAt(p.getPos()), p.getToken());
+            if (p.getPos() == 13) { p.setCanMove(false); };
             Tile currentTile = Board.getTile(p.getPos());
             System.out.println(currentTile);
             if (currentTile.isOwned() && currentTile.getOwner() != p) {

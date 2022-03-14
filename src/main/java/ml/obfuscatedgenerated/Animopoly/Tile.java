@@ -40,12 +40,13 @@ public class Tile {
         return owner;
     }
 
-    public String printTile() {
+    @Override
+    public String toString() {
         String message;
         if (owned) {
-            message = String.format("Name: %S + \n +Fee: %S", name, fee);
+            message = String.format("Name: %S\nFee: %S", name, fee);
         } else {
-            message = String.format("Name: %S + \n +Price: %S", name, price);
+            message = String.format("Name: %S\nPrice: %S", name, price);
         }
         return message;
     }
