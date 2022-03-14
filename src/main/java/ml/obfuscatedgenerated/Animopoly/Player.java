@@ -81,4 +81,8 @@ public class Player {
         message = String.format("%s [%c]", name, token);
         return message;
     }
+
+    public ArrayList<Tile> getOwnedTiles(){
+        return ownedTiles;
+    }
 }

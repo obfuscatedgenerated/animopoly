@@ -14,7 +14,7 @@
   {
     "title": "Switcheroo!",
     "message": "You've switched money with another player!",
-    "type": "W",
+    "type": "S",
     "value": 0
   },
   {

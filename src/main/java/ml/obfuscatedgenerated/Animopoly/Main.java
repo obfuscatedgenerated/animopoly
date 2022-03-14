@@ -52,7 +52,7 @@ public class Main {
         return false;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         Board.init();
 
         BoardPrinter bp = new BoardPrinter();
@@ -120,9 +120,16 @@ public class Main {
             if (!p.getCanMove()) {
                 System.out.println("LOL! Not allowed to move :(");
                 p.setCanMove(true);
+                Thread.sleep(1000);
                 continue;
             }
+            System.out.println("Player " + (currPlayer + 1) + " (" + p.getName() + ") has §"+p.getMoney());
             System.out.println("Player " + (currPlayer + 1) + " (" + p.getName() + ") rolling...");
+            for (int i : IntStream.range(0,100).toArray()) {
+                System.out.print("█");
+                Thread.sleep(10);
+            }
+            System.out.print("\n");
             ArrayList<Integer> diceValue = Board.dice();
             System.out.println(diceValue.get(0) + ", " + diceValue.get(1));
             bp.unsetSpace("ZABCDEFGHIJKLMNOPQRSTUVWXY".charAt(p.getPos()));
@@ -136,7 +143,33 @@ public class Main {
                     ArrayList<Player> notDead = new ArrayList<Player>();
                     for (Player player : getPlayers()) {
                         if (player.getMoney() <= 0) {
-                            deadPlayers++;
+                            if(player.getOwnedTiles().isEmpty()) {
+                                deadPlayers++;
+                                System.out.println("You are out of money. You can no longer make moves or buy animals.");
+                            }else{
+                                while(player.getMoney() <= 0) {
+                                    System.out.println("You are out of money, you need to sell an animal: ");
+                                    for (Tile tile : player.getOwnedTiles()) {
+                                        System.out.println(tile.getName() + "\nAsking price: " + tile.getFee());
+                                    }
+                                    System.out.println("What animal would you like to sell?");
+                                    boolean foundChoice;
+                                    do {
+                                        foundChoice = false;
+                                        String choice = scanner.nextLine();
+                                        for (Tile tile : player.getOwnedTiles()) {
+                                            if (choice.equalsIgnoreCase(tile.getName())) {
+                                                foundChoice = true;
+                                                player.changeWallet(tile.getFee());
+                                                player.removeTile(tile);
+                                            }
+                                        }
+                                        if(!foundChoice){
+                                            System.out.println("Please input a valid animal that you own.");
+                                        }
+                                    } while(!foundChoice);
+                                }
+                            }
                         } else {
                             notDead.add(player);
                         }
@@ -199,6 +232,7 @@ public class Main {
                 }
                 if (input == 'Y' && (p.getMoney() - currentTile.getPrice()) > 0) {
                     currentTile.setOwned(true, p);
+                    p.addTile(currentTile);
                 } else if (input == 'Y' && (p.getMoney() - currentTile.getPrice()) <= 0) {
                     System.out.println("You do not have enough money to purchase this tile!");
                 }
@@ -208,7 +242,33 @@ public class Main {
             ArrayList<Player> notDead = new ArrayList<Player>();
             for (Player player : getPlayers()) {
                 if (player.getMoney() <= 0) {
-                    deadPlayers++;
+                    if(player.getOwnedTiles().isEmpty()) {
+                        deadPlayers++;
+                        System.out.println("You are out of money. You can no longer make moves or buy animals.");
+                    }else{
+                        while(player.getMoney() <= 0) {
+                            System.out.println("You are out of money, you need to sell an animal: ");
+                            for (Tile tile : player.getOwnedTiles()) {
+                                System.out.println(tile.getName() + "\nAsking price: " + tile.getFee());
+                            }
+                            System.out.println("What animal would you like to sell?");
+                            boolean foundChoice;
+                            do {
+                                foundChoice = false;
+                                String choice = scanner.nextLine();
+                                for (Tile tile : player.getOwnedTiles()) {
+                                    if (choice.equalsIgnoreCase(tile.getName())) {
+                                        foundChoice = true;
+                                        player.changeWallet(tile.getFee());
+                                        player.removeTile(tile);
+                                    }
+                                }
+                                if(!foundChoice){
+                                    System.out.println("Please input a valid animal that you own.");
+                                }
+                            } while(!foundChoice);
+                        }
+                    }
                 } else {
                     notDead.add(player);
                 }
