@@ -27,7 +27,13 @@
     "title": "The wayward spirits.",
     "message": "Your actions have not been looked upon so kindly by the ancient gods. You move back 2 tiles.",
     "type": "M",
-    "vale": -2
+    "value": -2
+  },
+  {
+    "title": "Bad Colleague",
+    "message": "Your colleague was stupid and left the door open to all your cages. You move back 3 tiles to look for them.",
+    "type": "M",
+    "value": -3
   },
   {
     "title": "The stock market has collapsed.",
@@ -58,5 +64,59 @@
     "message": "Tim is angry. You lose.",
     "type": "L",
     "value": 0
+  },
+  {
+    "title": "Side Hustle",
+    "message": "You set up a side business buying properties and building houses or hotels on them. You now have a monopoly (no affiliation to the board game)  on local housing. Gain \u00A7750.",
+    "type": "W",
+    "value": 750
+  },
+  {
+    "title": "Bad Foresight",
+    "message": "A rich gent on dumb blue bird platform makes you buy funny dog currency, lose \u00A7200.",
+    "type": "W",
+    "value": -200
+  },
+  {
+    "title": "Devastating",
+    "message": "You're forced to use JetBrains products and throw away your sanity (and \u007A500).",
+    "type": "W",
+    "value": -500
+  },
+  {
+    "title": "Tax Evasion",
+    "message": "<details omitted>, gain \u007A500.",
+    "type": "W",
+    "value": 500
+  },
+  {
+    "title": "Tax Invasion",
+    "message": "The IRS breach your front door and seize their cash, lose \u007A500.",
+    "type": "W",
+    "value": -500
+  },
+  {
+    "title": "Head Start In Life",
+    "message": "You come from a rich family so you're allowed to go forward 3 spaces.",
+    "type": "M",
+    "value": 3
+  },
+  {
+    "title": "Tim The Angel Investor",
+    "message": "You summon Tim for a loan of \u007A2000",
+    "type": "W",
+    "value": 200
+  },
+  {
+    "title": "Animal Rights",
+    "message": "Activists take away \u007A500 of your money.",
+    "type": "W",
+    "value": -500
+  },
+  {
+    "title": "RIP Colin",
+    "message": "Your rich uncle Hegarty passes, you inherit \u007A1000!",
+    "type": "W",
+    "value": 1000
   }
 ]
