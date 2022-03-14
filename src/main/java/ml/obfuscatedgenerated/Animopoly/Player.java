@@ -8,6 +8,7 @@ public class Player {
     private int pos = 0;
     private char token;
     private ArrayList<Tile> ownedTiles = new ArrayList<Tile>();
+    private boolean canMove = true;
 
     public Player(String name, int money, char token) {
         this.name = name;
@@ -48,6 +49,13 @@ public class Player {
             pos += move;
         } else {
             pos += (move - 26);
+            if(pos == 0){
+                System.out.println("You landed on Go! +§1000");
+                changeWallet(1000);
+            }else{
+                System.out.println("You passed Go! +§500");
+                changeWallet(500);
+            }
         }
     }
 
@@ -57,6 +65,14 @@ public class Player {
 
     public char getToken() {
         return token;
+    }
+
+    public boolean getCanMove() {
+        return canMove;
+    }
+
+    public void setCanMove(boolean value) {
+        canMove = value;
     }
 
     @Override

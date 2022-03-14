@@ -5,6 +5,8 @@ import java.util.Scanner;
 import java.util.stream.IntStream;
 import java.util.Random;
 
+import static java.lang.Character.toUpperCase;
+
 public class Main {
     private static final int starterMoney = 1500;
     private static ArrayList<Player> players = new ArrayList<Player>();
@@ -106,11 +108,15 @@ public class Main {
             }
             players.add(new Player(holdName, starterMoney, holdToken)); // add the player to the arraylist
         }
-        scanner.close();
         int currPlayer = 0;
         while (true) { // repeat until the game ends
             System.out.println(bp.renderBoard());
             Player p = players.get(currPlayer);
+            if (!p.getCanMove()) {
+                System.out.println("LOL! Not allowed to move :(");
+                p.setCanMove(true);
+                continue;
+            }
             System.out.println("Player " + (currPlayer + 1) + " (" + p.getName() + ") rolling...");
             ArrayList<Integer> diceValue = Board.dice();
             System.out.println(diceValue.get(0) + ", " + diceValue.get(1));
@@ -123,7 +129,54 @@ public class Main {
             }
             p.move(move);
             bp.setSpaceToken("ZABCDEFGHIJKLMNOPQRSTUVWXY".charAt(p.getPos()), p.getToken());
-            // TODO: offer purchase, do logic
+            Tile currentTile = Board.getTile(p.getPos());
+            System.out.println(currentTile);
+            if (currentTile.isOwned() && currentTile.getOwner() != p) {
+                p.changeWallet(-currentTile.getFee());
+                currentTile.getOwner().changeWallet(currentTile.getFee());
+                System.out.println("You owe " + currentTile.getOwner() + " " + currentTile.getPrice() + ".");
+            } else if (currentTile.getOwner() == p) {
+                System.out.println("Would you like to upgrade this tile? [Y/N]");
+                System.out.println("Cost: " + currentTile.getPrice());
+                char input;
+                while (true) {
+                    try {
+                        input = toUpperCase(scanner.nextLine().charAt(0));
+                        if (input == 'Y' || input == 'N') {
+                            break;
+                        } else {
+                            System.out.println("Invalid input.");
+                        }
+                    } catch (StringIndexOutOfBoundsException e) {
+                        System.out.println("Invalid input.");
+                    }
+                }
+                if (input == 'Y' && (p.getMoney() - currentTile.getPrice()) > 0) {
+                    currentTile.increaseLevel();
+                } else if (input == 'Y' && (p.getMoney() - currentTile.getPrice()) <= 0) {
+                    System.out.println("You do not have enough money to upgrade this tile!");
+                }
+            } else {
+                System.out.println("Would you like to purchase this tile? [Y/N]");
+                char input;
+                while (true) {
+                    try {
+                        input = toUpperCase(scanner.nextLine().charAt(0));
+                        if (input == 'Y' || input == 'N') {
+                            break;
+                        } else {
+                            System.out.println("Invalid input.");
+                        }
+                    } catch (StringIndexOutOfBoundsException e) {
+                        System.out.println("Invalid input.");
+                    }
+                }
+                if (input == 'Y' && (p.getMoney() - currentTile.getPrice()) > 0) {
+                    currentTile.setOwned(true, p);
+                } else if (input == 'Y' && (p.getMoney() - currentTile.getPrice()) <= 0) {
+                    System.out.println("You do not have enough money to purchase this tile!");
+                }
+            }
             // count losing players, get non-losers
             int deadPlayers = 0;
             ArrayList<Player> notDead = new ArrayList<Player>();
@@ -135,7 +188,7 @@ public class Main {
                 }
             }
             // if there are 1 less losing players than the player count, get the 1st and only non-loser
-            if ((deadPlayers+1) == playerCount) {
+            if ((deadPlayers + 1) == playerCount) {
                 Player winner = notDead.get(0);
                 System.out.println(winner.getName() + " is the winner!");
                 break;
@@ -147,6 +200,7 @@ public class Main {
                 currPlayer++;
             }
         }
+        scanner.close();
         System.out.println("Thanks for playing!");
     }
 }

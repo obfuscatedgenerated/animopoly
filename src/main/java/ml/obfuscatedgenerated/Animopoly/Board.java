@@ -42,4 +42,8 @@ public class Board {
     public static int sumDice(ArrayList<Integer> al) {
         return al.get(0) + al.get(1);
     }
+
+    public static Tile getTile(int index) {
+        return tiles.get(index);
+    }
 }
