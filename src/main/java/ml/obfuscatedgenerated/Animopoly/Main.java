@@ -274,7 +274,11 @@ public class Main {
                 }
             }
             // if there are 1 less losing players than the player count, get the 1st and only non-loser
-            if ((deadPlayers + 1) == playerCount) {
+            if ((deadPlayers + 1) >= playerCount) {
+                if (notDead.isEmpty()) {
+                    System.out.println("Somehow, everyone loses.");
+                    break;
+                }
                 Player winner = notDead.get(0);
                 System.out.println(winner.getName() + " is the winner!");
                 break;
