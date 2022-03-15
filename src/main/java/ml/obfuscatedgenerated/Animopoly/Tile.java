@@ -42,12 +42,18 @@ public class Tile {
 
     @Override
     public String toString() {
-        String message;
+        String message = "";
+        message += "+================================+\n";
         if (owned) {
-            message = String.format("Name: %S\nFee: %S", name, fee);
+            message += String.format("Name: %S\nFee: §%S", name, fee);
         } else {
-            message = String.format("Name: %S\nPrice: %S", name, price);
+            if (price != 0) {
+                message += String.format("Name: %S\nPrice: §%S", name, price);
+            } else {
+                message += name;
+            }
         }
+        message += "\n+================================+";
         return message;
     }
 

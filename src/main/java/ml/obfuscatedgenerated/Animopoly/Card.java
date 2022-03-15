@@ -24,8 +24,10 @@ public class Card {
     @Override
     public String toString() {
         String string = "";
-        string += "Title: " + title + "\n";
-        string += "Message: " + message + "\n";
+        string += "+------------------\n";
+        string += "| Title: " + title + "\n";
+        string += "| Message: " + message + "\n";
+        string += "+------------------";
         return string;
     }
 }

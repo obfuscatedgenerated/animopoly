@@ -1,5 +1,6 @@
 package ml.obfuscatedgenerated.Animopoly;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.stream.IntStream;
@@ -115,14 +116,16 @@ public class Main {
         }
         int currPlayer = 0;
         while (true) { // repeat until the game ends
-            System.out.println(bp.renderBoard());
             Player p = players.get(currPlayer);
             if (!p.getCanMove()) {
-                System.out.println("LOL! Not allowed to move :(");
+                System.out.println("LOL! " + p + " misses a turn :(");
                 p.setCanMove(true);
                 Thread.sleep(1000);
                 continue;
             }
+
+            System.out.println(bp.renderBoard()); //MOVED SO THE BOARD DOESN'T SPAM WHEN PLAYERS CANNOT MOVE
+
             System.out.println("Player " + (currPlayer + 1) + " (" + p.getName() + ") has §" + p.getMoney());
             System.out.println("Player " + (currPlayer + 1) + " (" + p.getName() + ") rolling...");
             for (int i : IntStream.range(0, 100).toArray()) {
@@ -131,7 +134,7 @@ public class Main {
             }
             System.out.print("\n");
             ArrayList<Integer> diceValue = Board.dice();
-            System.out.println(diceValue.get(0) + ", " + diceValue.get(1));
+            System.out.println("Rolls: " + diceValue.get(0) + ", " + diceValue.get(1));
             bp.unsetSpace("ZABCDEFGHIJKLMNOPQRSTUVWXY".charAt(p.getPos()));
             int move = Board.sumDice(diceValue);
             System.out.println("Total: " + move);
@@ -193,7 +196,7 @@ public class Main {
             if (currentTile.isOwned() && currentTile.getOwner() != p) {
                 p.changeWallet(-currentTile.getFee());
                 currentTile.getOwner().changeWallet(currentTile.getFee());
-                System.out.println("You owe " + currentTile.getOwner() + " " + currentTile.getFee() + ".");
+                System.out.println("You owe " + currentTile.getOwner() + " §" + currentTile.getFee() + ".");
             } else if (currentTile.getOwner() == p) {
                 System.out.println("Would you like to upgrade this tile? [Y/N]");
                 System.out.println("Cost: " + currentTile.getPrice());
@@ -233,6 +236,7 @@ public class Main {
                 if (input == 'Y' && (p.getMoney() - currentTile.getPrice()) > 0) {
                     currentTile.setOwned(true, p);
                     p.addTile(currentTile);
+                    System.out.println(currentTile.getName() + " bought!");
                 } else if (input == 'Y' && (p.getMoney() - currentTile.getPrice()) <= 0) {
                     System.out.println("You do not have enough money to purchase this tile!");
                 }
@@ -259,6 +263,7 @@ public class Main {
                                 for (Tile tile : player.getOwnedTiles()) {
                                     if (choice.equalsIgnoreCase(tile.getName())) {
                                         foundChoice = true;
+                                        System.out.println(tile.getName() + " sold!");
                                         player.changeWallet(tile.getFee());
                                         player.removeTile(tile);
                                     }
@@ -283,6 +288,14 @@ public class Main {
                 System.out.println(winner.getName() + " is the winner!");
                 break;
             }
+
+            System.out.println("Press ENTER for next player's turn.");
+            try {
+                System.in.read();
+            } catch (IOException e) {
+                System.out.println(e.getLocalizedMessage());
+            }
+
             // go to next player
             if (currPlayer == (playerCount - 1)) {
                 currPlayer = 0;
@@ -290,6 +303,8 @@ public class Main {
                 currPlayer++;
             }
         }
+
+
         scanner.close();
         System.out.println("Thanks for playing!");
     }

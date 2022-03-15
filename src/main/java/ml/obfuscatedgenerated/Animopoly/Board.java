@@ -16,9 +16,14 @@ public class Board {
         Reader reader = new InputStreamReader(is);
         try (BufferedReader breader = new BufferedReader(reader)) {
             int index = 1;
+            int price;
             while (breader.ready()) {
                 String line = breader.readLine();
-                int price = (int) (100 * Math.ceil(0.2 * index));
+                if (index != 13 && index != 1) {
+                    price = (int) (100 * Math.ceil(0.2 * index));
+                } else {
+                    price = 0;
+                }
                 tiles.add(new Tile(price, price / 10, line));
                 index++;
             }
