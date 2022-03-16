@@ -30,7 +30,7 @@ public class Main {
             case 'S':
                 Player switcher;
                 do {
-                    switcher = players.get(new Random().nextInt(players.size() - 1));
+                    switcher = players.get(new Random().nextInt(players.size()));
                 } while (switcher != actor);
                 int temp = actor.getMoney();
                 actor.setMoney(switcher.getMoney());
@@ -297,12 +297,7 @@ public class Main {
             }
 
             System.out.println("Press ENTER for next player's turn.");
-            try {
-                System.in.read();
-                scanner.nextLine();
-            } catch (IOException e) {
-                System.out.println(e.getLocalizedMessage());
-            }
+            scanner.nextLine();
 
             // go to next player
             if (currPlayer == (playerCount - 1)) {
