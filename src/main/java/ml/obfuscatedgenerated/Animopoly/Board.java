@@ -19,7 +19,7 @@ public class Board {
             int price;
             while (breader.ready()) {
                 String line = breader.readLine();
-                if (index != 13 && index != 1) {
+                if (index != 14 && index != 1) {
                     price = (int) (100 * Math.ceil(0.2 * index));
                 } else {
                     price = 0;

@@ -292,6 +292,7 @@ public class Main {
             System.out.println("Press ENTER for next player's turn.");
             try {
                 System.in.read();
+                scanner.nextLine();
             } catch (IOException e) {
                 System.out.println(e.getLocalizedMessage());
             }
