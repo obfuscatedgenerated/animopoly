@@ -36,6 +36,10 @@ public class Tile {
         this.owner = owner;
     }
 
+    public void setOwned(boolean state) {
+        this.owned = state;
+    }
+
     public Player getOwner() {
         return owner;
     }

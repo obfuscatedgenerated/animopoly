@@ -264,6 +264,7 @@ public class Main {
                                     if (choice.equalsIgnoreCase(tile.getName())) {
                                         foundChoice = true;
                                         System.out.println(tile.getName() + " sold!");
+                                        tile.setOwned(false);
                                         player.changeWallet(tile.getFee());
                                         player.removeTile(tile);
                                     }
