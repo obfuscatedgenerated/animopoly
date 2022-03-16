@@ -121,6 +121,12 @@ public class Main {
                 System.out.println("LOL! " + p + " misses a turn :(");
                 p.setCanMove(true);
                 Thread.sleep(1000);
+                // go to next player
+                if (currPlayer == (playerCount - 1)) {
+                    currPlayer = 0;
+                } else {
+                    currPlayer++;
+                }
                 continue;
             }
 
