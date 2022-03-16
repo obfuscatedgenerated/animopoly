@@ -31,9 +31,9 @@
   },
   {
     "title": "Bad Colleague",
-    "message": "Your colleague was stupid and left the door open to all your cages. You move back 3 tiles to look for them.",
+    "message": "Your colleague was stupid and left the door open to all your cages. You move back 2 tiles to look for them.",
     "type": "M",
-    "value": -3
+    "value": -2
   },
   {
     "title": "The stock market has collapsed.",
@@ -91,15 +91,15 @@
   },
   {
     "title": "Tax Invasion",
-    "message": "The IRS breach your front door and seize their cash, lose \u007A500.",
+    "message": "The IRS breach your front door and seize their cash, lose \u007A750.",
     "type": "W",
-    "value": -500
+    "value": -750
   },
   {
     "title": "Head Start In Life",
-    "message": "You come from a rich family so you're allowed to go forward 3 spaces.",
+    "message": "You come from a rich family so you're allowed to go forward 2 spaces.",
     "type": "M",
-    "value": 3
+    "value": 2
   },
   {
     "title": "Tim The Angel Investor",
@@ -115,8 +115,14 @@
   },
   {
     "title": "RIP Colin",
-    "message": "Your rich uncle Hegarty passes, you inherit \u007A1000!",
+    "message": "Your rich uncle Hegarty passes, you inherit \u007A1500!",
     "type": "W",
-    "value": 1000
+    "value": 1500
+  },
+  {
+    "title": "Jackpot",
+    "message": "Gavin Williamson is letting you buy a glue stick in celebration of his knighthood! Gain \u007A500!",
+    "type": "W",
+    "value": 500
   }
 ]
