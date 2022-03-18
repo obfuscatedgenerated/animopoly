@@ -221,6 +221,7 @@ public class Main {
                 }
                 if (input == 'Y' && (p.getMoney() - currentTile.getPrice()) > 0) {
                     currentTile.increaseLevel();
+                    p.changeWallet(-currentTile.getPrice());
                 } else if (input == 'Y' && (p.getMoney() - currentTile.getPrice()) <= 0) {
                     System.out.println("You do not have enough money to upgrade this tile!");
                 }
@@ -242,6 +243,7 @@ public class Main {
                 if (input == 'Y' && (p.getMoney() - currentTile.getPrice()) > 0) {
                     currentTile.setOwned(true, p);
                     p.addTile(currentTile);
+                    p.changeWallet(-currentTile.getPrice());
                     System.out.println(currentTile.getName() + " bought!");
                 } else if (input == 'Y' && (p.getMoney() - currentTile.getPrice()) <= 0) {
                     System.out.println("You do not have enough money to purchase this tile!");
@@ -257,6 +259,11 @@ public class Main {
                         System.out.println("You are out of money. You can no longer make moves or buy animals.");
                     } else {
                         while (player.getMoney() <= 0) {
+                            if (player.getOwnedTiles().isEmpty()) {
+                                deadPlayers++;
+                                System.out.println("You are out of money. You can no longer make moves or buy animals.");
+                                break;
+                            }
                             System.out.println("You are out of money, you need to sell an animal: ");
                             for (Tile tile : player.getOwnedTiles()) {
                                 System.out.println(tile.getName() + "\nAsking price: " + tile.getFee());
@@ -266,14 +273,18 @@ public class Main {
                             do {
                                 foundChoice = false;
                                 String choice = scanner.nextLine();
+                                Tile animalToRemove = null;
                                 for (Tile tile : player.getOwnedTiles()) {
                                     if (choice.equalsIgnoreCase(tile.getName())) {
                                         foundChoice = true;
                                         System.out.println(tile.getName() + " sold!");
                                         tile.setOwned(false);
                                         player.changeWallet(tile.getFee());
-                                        player.removeTile(tile);
+                                        animalToRemove = tile;
                                     }
+                                }
+                                if(animalToRemove != null){
+                                    player.removeTile(animalToRemove);
                                 }
                                 if (!foundChoice) {
                                     System.out.println("Please input a valid animal that you own.");
