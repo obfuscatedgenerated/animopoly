@@ -31,7 +31,7 @@ public class Main {
                 Player switcher;
                 do {
                     switcher = players.get(new Random().nextInt(players.size()));
-                } while (switcher != actor);
+                } while (switcher == actor);
                 int temp = actor.getMoney();
                 actor.setMoney(switcher.getMoney());
                 switcher.setMoney(temp);
