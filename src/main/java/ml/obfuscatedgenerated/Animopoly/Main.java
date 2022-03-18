@@ -17,7 +17,7 @@ public class Main {
         return players;
     }
 
-    public static boolean drawCard(Player actor) {
+    public static Player drawCard(Player actor) {
         Card card = deck.draw();
         System.out.println(card);
         switch (card.getType()) {
@@ -38,19 +38,14 @@ public class Main {
                 System.out.println("You have switched with " + switcher);
                 break;
             case 'V':
-                for (Player player : players) {
-                    if (player != actor) {
-                        player.setMoney(0);
-                    }
-                }
-                return true;
+                return actor;
             case 'L':
-                actor.setMoney(0);
+                actor.setMoney(-99999);
                 break;
             default:
                 throw new IllegalArgumentException(card.getType() + " is not a valid card type");
         }
-        return false;
+        return null;
     }
 
     public static void main(String[] args) throws InterruptedException {
@@ -146,49 +141,10 @@ public class Main {
             System.out.println("Total: " + move);
             if (Board.areDoubles(diceValue)) {
                 System.out.println("DOUBLES! Drawing a card...");
-                if (drawCard(p)) { // check return gameend
-                    // count losing players, get non-losers
-                    int deadPlayers = 0;
-                    ArrayList<Player> notDead = new ArrayList<Player>();
-                    for (Player player : getPlayers()) {
-                        if (player.getMoney() <= 0) {
-                            if (player.getOwnedTiles().isEmpty()) {
-                                deadPlayers++;
-                                System.out.println("You are out of money. You can no longer make moves or buy animals.");
-                            } else {
-                                while (player.getMoney() <= 0) {
-                                    System.out.println("You are out of money, you need to sell an animal: ");
-                                    for (Tile tile : player.getOwnedTiles()) {
-                                        System.out.println(tile.getName() + "\nAsking price: " + tile.getFee());
-                                    }
-                                    System.out.println("What animal would you like to sell?");
-                                    boolean foundChoice;
-                                    do {
-                                        foundChoice = false;
-                                        String choice = scanner.nextLine();
-                                        for (Tile tile : player.getOwnedTiles()) {
-                                            if (choice.equalsIgnoreCase(tile.getName())) {
-                                                foundChoice = true;
-                                                player.changeWallet(tile.getFee());
-                                                player.removeTile(tile);
-                                            }
-                                        }
-                                        if (!foundChoice) {
-                                            System.out.println("Please input a valid animal that you own.");
-                                        }
-                                    } while (!foundChoice);
-                                }
-                            }
-                        } else {
-                            notDead.add(player);
-                        }
-                    }
-                    // if there are 1 less losing players than the player count, get the 1st and only non-loser
-                    if ((deadPlayers + 1) == playerCount) {
-                        Player winner = notDead.get(0);
-                        System.out.println(winner.getName() + " is the winner!");
-                        break;
-                    }
+                Player holdPlayer = drawCard(p);
+                if (holdPlayer != null) { // check return gameend
+                    System.out.println(holdPlayer.getName() + " is the winner!");
+                    break;
                 }
             }
             p.move(move);
@@ -205,7 +161,8 @@ public class Main {
                 System.out.println("You owe " + currentTile.getOwner() + " §" + currentTile.getFee() + ".");
             } else if (currentTile.getOwner() == p) {
                 System.out.println("Would you like to upgrade this tile? [Y/N]");
-                System.out.println("Cost: " + currentTile.getPrice());
+                System.out.println("Cost: §" + currentTile.getPrice());
+                System.out.println("Balance: §"+p.getMoney());
                 char input;
                 while (true) {
                     try {
@@ -227,6 +184,7 @@ public class Main {
                 }
             } else if (p.getPos() != 0 && p.getPos() != 13) {
                 System.out.println("Would you like to purchase this tile? [Y/N]");
+                System.out.println("Balance: §"+p.getMoney());
                 char input;
                 while (true) {
                     try {
