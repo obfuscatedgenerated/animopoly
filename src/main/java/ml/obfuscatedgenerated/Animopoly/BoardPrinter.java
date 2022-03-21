@@ -19,7 +19,7 @@ public class BoardPrinter {
             "|         |                    +---------------------------------------------+  |         |\n" +
             "|    ${Y_token}    |                    |           Prices of the Animals             |  |   ${I_token}     |\n" +
             "|---------|                    +---------------------------------------------+  |---------|\n" +
-            "|  Xerus  |    /----------\\    | 1st 5 animals: Buy: §100, Rent: §10/20/50   |  |Jumping  |\n" +
+            "|Xylophone|    /----------\\    | 1st 5 animals: Buy: §100, Rent: §10/20/50   |  |Jumping  |\n" +
             "|         |    |          |    |     (A,B,C,D,E)                             |  |Kangaroo |\n" +
             "|         |    |          |    | 2nd 5 animals: Buy: §200, Rent: §20/40/100  |  |         |\n" +
             "|    ${X_token}    |    |          |    |     (F,G,H,I,J)                             |  |    ${J_token}    |\n" +
