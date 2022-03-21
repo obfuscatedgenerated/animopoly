@@ -12,6 +12,7 @@ public class Main {
     private static final int starterMoney = 1500;
     private static ArrayList<Player> players = new ArrayList<Player>();
     private static final Deck deck = new Deck();
+    private static final int BANKRUPTCY_VALUE = -5000;
 
     public static ArrayList<Player> getPlayers() {
         return players;
@@ -31,7 +32,7 @@ public class Main {
                 Player switcher;
                 do {
                     switcher = players.get(new Random().nextInt(players.size()));
-                } while (switcher == actor);
+                } while (switcher != actor);
                 int temp = actor.getMoney();
                 actor.setMoney(switcher.getMoney());
                 switcher.setMoney(temp);
@@ -182,7 +183,7 @@ public class Main {
                 } else if (input == 'Y' && (p.getMoney() - currentTile.getPrice()) <= 0) {
                     System.out.println("You do not have enough money to upgrade this tile!");
                 }
-            } else if (p.getPos() != 0 && p.getPos() != 13) {
+            } else if (p.getPos() != 0 && p.getPos() != 13 && p.getMoney() > BANKRUPTCY_VALUE) {
                 System.out.println("Would you like to purchase this tile? [Y/N]");
                 System.out.println("Balance: §"+p.getMoney());
                 char input;
@@ -217,7 +218,7 @@ public class Main {
                         System.out.println("You are out of money. You can no longer make moves or buy animals.");
                     } else {
                         while (player.getMoney() <= 0) {
-                            if (player.getOwnedTiles().isEmpty()) {
+                            if (player.getOwnedTiles().isEmpty() || p.getMoney() <= BANKRUPTCY_VALUE) {
                                 deadPlayers++;
                                 System.out.println("You are out of money. You can no longer make moves or buy animals.");
                                 break;
@@ -226,6 +227,7 @@ public class Main {
                             for (Tile tile : player.getOwnedTiles()) {
                                 System.out.println(tile.getName() + "\nAsking price: " + tile.getFee());
                             }
+                            System.out.println("['sell all' to sell all at once]");
                             System.out.println("What animal would you like to sell?");
                             boolean foundChoice;
                             do {
@@ -241,8 +243,22 @@ public class Main {
                                         animalToRemove = tile;
                                     }
                                 }
+                                ArrayList<Tile> animalsToRemove = new ArrayList<Tile>();
+                                if(choice.equalsIgnoreCase("sell all")){
+                                    foundChoice = true;
+                                    for(Tile tile : player.getOwnedTiles()){
+                                        System.out.println(tile.getName() + " sold!");
+                                        tile.setOwned(false);
+                                        player.changeWallet(tile.getFee());
+                                        animalsToRemove.add(tile);
+                                    }
+                                }
                                 if(animalToRemove != null){
                                     player.removeTile(animalToRemove);
+                                }else if(!animalsToRemove.isEmpty()){
+                                    for(Tile tile : animalsToRemove){
+                                        player.removeTile(tile);
+                                    }
                                 }
                                 if (!foundChoice) {
                                     System.out.println("Please input a valid animal that you own.");
